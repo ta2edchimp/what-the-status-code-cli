@@ -30,7 +30,7 @@
   "private": true,
   "dependencies": {
     "inquirer": "^0.12.0",
-    "inquiry-traverser": "^0.1.0"
+    "inquiry-traverser": "^0.2.0"
   },
   "devDependencies": {
     "eslint": "^2.1.0"
