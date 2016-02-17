@@ -4,7 +4,8 @@
   "description": "A CLI Tool to help choosing the correct HTTP Status Code by answering some questions.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint index.js",
+    "test": "npm run lint && echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
     "wtsc": "index.js"
@@ -30,5 +31,8 @@
   "dependencies": {
     "inquirer": "^0.12.0",
     "inquiry-traverser": "^0.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.1.0"
   }
 }
