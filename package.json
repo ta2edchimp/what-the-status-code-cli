@@ -33,6 +33,7 @@
     "inquiry-traverser": "^0.2.0"
   },
   "devDependencies": {
-    "eslint": "^2.1.0"
+    "eslint": "^2.1.0",
+    "eslint-config-idiomatic": "^2.0.0"
   }
 }

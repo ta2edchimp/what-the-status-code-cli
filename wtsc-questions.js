@@ -182,7 +182,7 @@ module.exports = {
     },
     resolve: {
       true: {
-        value: [{
+        value: [ {
           status: 200,
           text: 'OK'
         }, {
@@ -191,7 +191,7 @@ module.exports = {
         }, {
           status: 304,
           text: 'Not Modified'
-        }]
+        } ]
       },
       false: {
         value: {

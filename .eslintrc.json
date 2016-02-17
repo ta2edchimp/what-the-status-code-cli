@@ -1,7 +1,10 @@
 {
   "root": true,
+  "extends": "idiomatic",
   "env": {
     "node": true
   },
-  "extends": "eslint:recommended"
+  "rules": {
+    "dot-notation": [ 2, { "allowKeywords": true, "allowPattern": "" } ]
+  }
 }
