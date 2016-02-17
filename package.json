@@ -1,0 +1,33 @@
+{
+  "name": "what-the-status-code-cli",
+  "version": "1.0.0",
+  "description": "A CLI Tool to help choosing the correct HTTP Status Code by answering some questions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "wtsc": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ta2edchimp/what-the-status-code-cli.git"
+  },
+  "keywords": [
+    "http",
+    "status",
+    "code",
+    "status",
+    "code"
+  ],
+  "author": "Andreas Windt <email@andreaswindt.com> (http://andreaswindt.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ta2edchimp/what-the-status-code-cli/issues"
+  },
+  "homepage": "https://github.com/ta2edchimp/what-the-status-code-cli#readme",
+  "private": true,
+  "dependencies": {
+    "inquirer": "^0.12.0"
+  }
+}
