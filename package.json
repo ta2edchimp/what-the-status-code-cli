@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js",
-    "test": "npm run lint && echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint && npm run test:statuscodes && exit 1",
+    "test:statuscodes": "node test/status-code-resolution"
   },
   "bin": {
     "wtsc": "index.js"
@@ -29,6 +30,8 @@
   "homepage": "https://github.com/ta2edchimp/what-the-status-code-cli#readme",
   "private": true,
   "dependencies": {
+    "cli-table2": "^0.2.0",
+    "colors": "^1.1.2",
     "inquirer": "^0.12.0",
     "inquiry-traverser": "^0.2.0"
   },
