@@ -83,16 +83,10 @@ module.exports = {
     },
     resolve: {
       true: {
-        value: {
-          status: 302,
-          text: 'Found'
-        }
+        value: 302
       },
       false: {
-        value: {
-          status: 301,
-          text: 'Moved Permanently'
-        }
+        value: 301
       }
     }
   },
@@ -104,16 +98,10 @@ module.exports = {
     },
     resolve: {
       true: {
-        value: {
-          status: 307,
-          text: 'Temporary Redirect'
-        }
+        value: 307
       },
       false: {
-        value: {
-          status: 308,
-          text: 'Permanent Redirect'
-        }
+        value: 308
       }
     }
   },
@@ -125,16 +113,10 @@ module.exports = {
     },
     resolve: {
       true: {
-        value: {
-          status: 201,
-          text: 'Created'
-        }
+        value: 201
       },
       false: {
-        value: {
-          status: 303,
-          text: 'See Other'
-        }
+        value: 303
       }
     }
   },
@@ -182,22 +164,10 @@ module.exports = {
     },
     resolve: {
       true: {
-        value: [ {
-          status: 200,
-          text: 'OK'
-        }, {
-          status: 206,
-          text: 'Partial Content'
-        }, {
-          status: 304,
-          text: 'Not Modified'
-        } ]
+        value: [ 200, 206, 304 ]
       },
       false: {
-        value: {
-          status: 200,
-          text: 'OK'
-        }
+        value: 200
       }
     }
   },
@@ -225,16 +195,10 @@ module.exports = {
     },
     resolve: {
       true: {
-        value: {
-          status: 420,
-          text: 'Enhance Your Calm'
-        }
+        value: 420
       },
       false: {
-        resolve: {
-          status: 429,
-          text: 'Too Many Requests'
-        }
+        value: 429
       }
     }
   },
@@ -246,16 +210,10 @@ module.exports = {
     },
     resolve: {
       true: {
-        resolve: {
-          status: 666,
-          text: 'Not Implemented'
-        }
+        value: 666
       },
       false: {
-        resolve: {
-          status: 667,
-          text: 'Not Implemented #2'
-        }
+        value: 667
       }
     }
   },
@@ -268,16 +226,10 @@ module.exports = {
     },
     resolve: {
       true: {
-        resolve: {
-          status: 503,
-          text: 'Service Unavailable'
-        }
+        value: 503
       },
       false: {
-        resolve: {
-          status: 668,
-          text: 'Not Implemented #3'
-        }
+        value: 668
       }
     }
   }
