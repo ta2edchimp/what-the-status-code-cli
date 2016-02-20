@@ -15,6 +15,12 @@ module.exports = {
     meaning: 'An interim response used to inform the client that the server has accepted the complete request, but has not yet completed it.',
     link: true
   },
+  '103': {
+    message: 'Checkpoint',
+    meaning: 'Used in the resumable requests proposal to resume aborted PUT or POST requests.',
+    unofficial: true,
+    customLink: 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Unofficial_codes'
+  },
   // 2xx Success
   '200': {
     message: 'OK',
@@ -205,7 +211,9 @@ module.exports = {
   },
   '420': {
     message: 'Enhance Your Calm',
-    meaning: ''
+    meaning: 'Returned by version 1 of the Twitter Search and Trends API when the client is being rate limited; versions 1.1 and later use the 429 Too Many Requests response code instead.',
+    unofficial: true,
+    customLink: 'https://dev.twitter.com/overview/api/response-codes'
   },
   '421': {
     message: 'Misdirected Request',
@@ -247,10 +255,58 @@ module.exports = {
     meaning: 'The server is unwilling to process the request because its header fields are too large. The request MAY be resubmitted after reducing the size of the request header fields.',
     link: true
   },
+  '440': {
+    message: 'Login Timeout',
+    meaning: 'The client\'s session has expired and must log in again.',
+    unofficial: true,
+    customLink: 'https://support.microsoft.com/en-us/kb/941201'
+  },
+  '444': {
+    message: 'No Response',
+    meaning: 'Used to indicate that the server has returned no information to the client and closed the connection.',
+    unofficial: true,
+    customLink: 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx'
+  },
+  '449': {
+    message: 'Retry With',
+    meaning: 'The server cannot honour the request as the user has not provided the required information.',
+    unofficial: true,
+    customLink: 'https://msdn.microsoft.com/en-us/library/dd891478.aspx'
+  },
+  '450': {
+    message: 'Blocked by Windows Parental Controls (Microsoft)',
+    meaning: 'A Microsoft extension. This error is given when Windows Parental Controls are turned on and are blocking access to the given webpage.',
+    unofficial: true,
+    customLink: 'https://public.bn1.livefilestore.com/y1pJXeg_sNOONKwMraE-xmZFWAfZF6COAKnyfgc-2ykUof743pV4XuRqm14pj-b_yK8Km4sfSR6mU5OhLrupZ8dFg'
+  },
   '451': {
     message: 'Unavailable For Legal Reasons',
     meaning: 'The server is denying access to the resource as a consequence of a legal demand.',
     link: true
+  },
+  '495': {
+    message: 'SSL Certificate Error',
+    meaning: 'An expansion of the 400 Bad Request response code, used when the client has provided an invalid client certificate.',
+    unofficial: true,
+    customLink: 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx'
+  },
+  '496': {
+    message: 'SSL Certificate Required',
+    meaning: 'An expansion of the 400 Bad Request response code, used when a client certificate is required but not provided.',
+    unofficial: true,
+    customLink: 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx'
+  },
+  '497': {
+    message: 'HTTP Request Sent to HTTPS Port',
+    meaning: 'An expansion of the 400 Bad Request response code, used when the client has made a HTTP request to a port listening for HTTPS requests.',
+    unofficial: true,
+    customLink: 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx'
+  },
+  '498': {
+    message: 'Invalid Token (Esri)',
+    meaning: 'Returned by ArcGIS for Server. A code of 498 indicates an expired or otherwise invalid token.',
+    unofficial: true,
+    customLink: 'http://help.arcgis.com/en/arcgisserver/10.0/apis/soap/index.htm#Using_token_authentication.htm'
   },
   '499': {
     message: 'Client Closed Request',
@@ -303,6 +359,12 @@ module.exports = {
     meaning: 'The server terminated an operation because it encountered an infinite loop while processing a request with "Depth: infinity". This status indicates that the entire operation failed.',
     link: true
   },
+  '509': {
+    message: 'Bandwidth Limit Exceeded (Apache Web Server/cPanel)',
+    meaning: 'The server has exceeded the bandwidth specified by the server administrator; this is often used by shared hosting providers to limit the bandwidth of customers.',
+    unofficial: true,
+    customLink: 'https://documentation.cpanel.net/display/CKB/HTTP+Error+Codes+and+Quick+Fixes#HTTPErrorCodesandQuickFixes-509BandwidthLimitExceeded'
+  },
   '510': {
     message: 'Not Extended',
     meaning: 'The policy for accessing the resource has not been met in the request. The server should send back all the information necessary for the client to issue an extended request.',
@@ -312,6 +374,48 @@ module.exports = {
     message: 'Network Authentication Required',
     meaning: 'The client needs to authenticate to gain network access.',
     link: true
+  },
+  '520': {
+    message: 'Unknown Error',
+    meaning: 'The 520 error is used as a "catch-all response for when the origin server returns something unexpected", listing connection resets, large headers, and empty or invalid responses as common triggers.',
+    unofficial: true,
+    customLink: 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#CloudFlare'
+  },
+  '521': {
+    message: 'Web Server Is Down',
+    meaning: 'The origin server has refused the connection from CloudFlare.',
+    unofficial: true,
+    customLink: 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#CloudFlare'
+  },
+  '522': {
+    message: 'Connection Timed Out',
+    meaning: 'CloudFlare could not negotiate a TCP handshake with the origin server.',
+    unofficial: true,
+    customLink: 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#CloudFlare'
+  },
+  '523': {
+    message: 'Origin Is Unreachable',
+    meaning: 'CloudFlare could not reach the origin server; for example, if the DNS records for the origin server are incorrect.',
+    unofficial: true,
+    customLink: 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#CloudFlare'
+  },
+  '524': {
+    message: 'A Timeout Occurred',
+    meaning: 'CloudFlare was able to complete a TCP connection to the origin server, but did not receive a timely HTTP response.',
+    unofficial: true,
+    customLink: 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#CloudFlare'
+  },
+  '525': {
+    message: 'SSL Handshake Failed',
+    meaning: 'CloudFlare could not negotiate a SSL/TLS handshake with the origin server.',
+    unofficial: true,
+    customLink: 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#CloudFlare'
+  },
+  '526': {
+    message: 'Invalid SSL Certificate',
+    meaning: 'CloudFlare could not validate the SSL/TLS certificate that the origin server presented.',
+    unofficial: true,
+    customLink: 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#CloudFlare'
   },
   '599': {
     message: 'Network Connect Timeout Error',

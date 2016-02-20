@@ -13,6 +13,7 @@ var
 
 colors.setTheme( {
   tableHead: 'yellow',
+  emphasize: [ 'red', 'bold' ],
   link: [ 'cyan', 'bold', 'underline' ],
   error: [ 'red', 'bold' ]
 } );
@@ -139,6 +140,14 @@ function getStatusCodesTable( codes ) {
 
       if ( codeInfo.link === true ) {
         meaning += '\n' + ( 'https://httpstatuses.com/' + code ).link;
+      }
+
+      if ( typeof codeInfo.customLink === 'string' ) {
+        meaning += '\n' + codeInfo.customLink.link;
+      }
+
+      if ( codeInfo.unofficial === true ) {
+        meaning = 'Unofficial code'.emphasize + '\n' + meaning;
       }
 
     } else {
