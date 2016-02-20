@@ -22,7 +22,7 @@ module.exports = {
     },
     resolve: {
       true: {
-        redirect: 'resp5xx'
+        redirect: 'resp5xxShouldRetry'
       },
       false: {
         redirect: 'resp2xx3xxRedirect'
@@ -429,7 +429,52 @@ module.exports = {
         value: 503
       },
       false: {
-        value: 668
+        redirect: 'resp5xxProblemWithAnotherServer'
+      }
+    }
+  },
+
+  resp5xxProblemWithAnotherServer: {
+    question: {
+      message: 'Is it a problem with another server?',
+      type: 'confirm'
+    },
+    resolve: {
+      true: {
+        redirect: 'resp5xxOtherServerResponding'
+      },
+      false: {
+        redirect: 'resp5xxDoYouFeelBad'
+      }
+    }
+  },
+
+  resp5xxOtherServerResponding: {
+    question: {
+      message: 'Is the other server responding?',
+      type: 'confirm'
+    },
+    resolve: {
+      true: {
+        value: 502
+      },
+      false: {
+        value: 504
+      }
+    }
+  },
+
+  resp5xxDoYouFeelBad: {
+    question: {
+      message: 'Do you feel bad your code can\'t handle the request?',
+      type: 'confirm'
+    },
+    resolve: {
+      true: {
+        value: 501
+      },
+      false: {
+        value: 500
       }
     }
   }
