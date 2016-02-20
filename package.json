@@ -1,6 +1,6 @@
 {
   "name": "what-the-status-code-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI Tool to help choosing the correct HTTP Status Code by answering some questions.",
   "main": "app/index.js",
   "scripts": {
@@ -28,7 +28,6 @@
     "url": "https://github.com/ta2edchimp/what-the-status-code-cli/issues"
   },
   "homepage": "https://github.com/ta2edchimp/what-the-status-code-cli#readme",
-  "private": true,
   "dependencies": {
     "cli-table2": "^0.2.0",
     "colors": "^1.1.2",
