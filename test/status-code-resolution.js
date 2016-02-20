@@ -13,6 +13,14 @@ colors.setTheme( {
   error: [ 'red', 'bold' ]
 } );
 
+
+/**
+ * Returns whether a cetain object exists.
+ *
+ * @param  {string} name   The object's name (for output)
+ * @param  {Object} object The objects
+ * @return {boolean}
+ */
 function testObjectAvailability( name, object ) {
 
   console.log( '\tTesting object "' + name + '" for availability ...' );
@@ -26,6 +34,15 @@ function testObjectAvailability( name, object ) {
   return true;
 }
 
+
+/**
+ * Tests whether the specified questions successfully resolve to an HTTP Status
+ * Code explanation.
+ *
+ * @param  {Object} allQuestions An object containing all questions
+ * @param  {Object} statusCodes  An object with available Status Code explanations
+ * @return {void}
+ */
 function testStatusCodePresence( allQuestions, statusCodes ) {
   var
     questionName,
@@ -68,13 +85,88 @@ function testStatusCodePresence( allQuestions, statusCodes ) {
   }
 }
 
+
+/**
+ * Tests an object's property for existence and its type.
+ *
+ * @param  {string}  code               Status Code (for output)
+ * @param  {Object}  object             The object whose property to test
+ * @param  {string}  propName           The name of the property to test
+ * @param  {string}  propType           The desired type
+ * @param  {boolean} existenceMandatory Whether to insist on the property's existence
+ * @return {boolean}
+ */
+function testProperty( code, object, propName, propType, existenceMandatory ) {
+  if ( !object[ propName ] ) {
+    if ( existenceMandatory !== false ) {
+      console.log( '\t' + '✘'.error + ' Status Code ' + code + ' lacks a "' + propName + '" ' + propType + ' property!' );
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  if ( typeof object[ propName ] !== propType ) {
+    console.log( '\t' + '✘'.error + ' Status Code ' + code + ' has property "' + propName + '" of wrong type! Must be of type ' + propType + '!' );
+    return false;
+  }
+
+
+  return true;
+}
+
+
+/**
+ * Tests the plausibility of all available HTTP Status Code explanations.
+ *
+ * @param  {Object} statusCodes Object containing the explanations to test
+ * @return {void}
+ */
+function testStatusCodeDetails( statusCodes ) {
+  var
+    code,
+    codeInfo,
+    plausibilityTests,
+    plausible = true;
+
+  for ( code in statusCodes ) {
+    if ( !statusCodes.hasOwnProperty( code ) || isNaN( code ) ) {
+      continue;
+    }
+
+    codeInfo = statusCodes[ code ];
+
+    plausibilityTests = [
+      testProperty( code, codeInfo, 'message', 'string' ),
+      testProperty( code, codeInfo, 'meaning', 'string' ),
+      testProperty( code, codeInfo, 'link', 'boolean', false ),
+      testProperty( code, codeInfo, 'unofficial', 'boolean', false ),
+      testProperty( code, codeInfo, 'customLink', 'string', false )
+    ];
+
+    if ( plausibilityTests.indexOf( false ) > -1 ) {
+      plausible = false;
+    } else {
+      console.log( '\t' + '✔︎'.success + ' Status Code ' + code + ' looks ok.' );
+    }
+  }
+
+  if ( !plausible ) {
+    throw Error( 'Not all Status Codes have plausible details!' );
+  }
+}
+
+
 try {
   testObjectAvailability( 'Questions', questions );
   testObjectAvailability( 'available Status Codes', availableStatusCodes );
+  console.log( '\n' + 'All required objects are available.'.green + '\n' );
 
   testStatusCodePresence( questions, availableStatusCodes );
-
   console.log( '\n' + 'All questions\' status codes responses get resolved.'.green + '\n' );
+
+  testStatusCodeDetails( availableStatusCodes );
+  console.log( '\n' + 'All status codes details seem plausible.'.green + '\n' );
 } catch ( e ) {
   console.log( '\nERROR:'.error, e );
   process.exit( 1 );
