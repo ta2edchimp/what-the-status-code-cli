@@ -4,8 +4,8 @@
   "description": "A CLI Tool to help choosing the correct HTTP Status Code by answering some questions.",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint index.js",
-    "test": "npm run lint && npm run test:statuscodes && exit 1",
+    "test": "npm run test:lint && npm run test:statuscodes",
+    "test:lint": "eslint *.js */*.js",
     "test:statuscodes": "node test/status-code-resolution"
   },
   "bin": {
