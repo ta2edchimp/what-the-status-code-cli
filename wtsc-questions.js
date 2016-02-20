@@ -41,7 +41,7 @@ module.exports = {
         redirect: 'resp2xx3xxSameResourceNewLocation'
       },
       false: {
-        redirect: 'resp2xx3xxRequestCompletedLater'
+        redirect: 'resp2xx3xxRequestCompletesLater'
       }
     }
   },
@@ -121,7 +121,7 @@ module.exports = {
     }
   },
 
-  resp2xx3xxRequestCompletedLater: {
+  resp2xx3xxRequestCompletesLater: {
     question: {
       message: 'Will the request be completed later?',
       type: 'confirm'
@@ -210,10 +210,210 @@ module.exports = {
     },
     resolve: {
       true: {
-        value: 666
+        redirect: 'resp4xxUsingHttpAuth'
       },
       false: {
-        value: 667
+        redirect: 'resp4xxUserAccessToResource'
+      }
+    }
+  },
+
+  resp4xxUsingHttpAuth: {
+    question: {
+      message: 'Are you using HTTP auth?',
+      type: 'confirm'
+    },
+    resolve: {
+      true: {
+        value: 401
+      },
+      false: {
+        redirect: 'resp4xxIsResourceSecret'
+      }
+    }
+  },
+
+  resp4xxUserAccessToResource: {
+    question: {
+      message: 'Does the user have access to the resource?',
+      type: 'confirm'
+    },
+    resolve: {
+      true: {
+        redirect: 'resp4xxDoesResourceExist'
+      },
+      false: {
+        redirect: 'resp4xxIsResourceSecret'
+      }
+    }
+  },
+
+  resp4xxIsResourceSecret: {
+    question: {
+      message: 'Is the resource a secret?',
+      type: 'confirm'
+    },
+    resolve: {
+      false: {
+        value: 403
+      },
+      true: {
+        value: 404
+      }
+    }
+  },
+
+  resp4xxDoesResourceExist: {
+    question: {
+      message: 'Does the resource even exist?',
+      type: 'confirm'
+    },
+    resolve: {
+      true: {
+        redirect: 'resp4xxHttpMethodHandledByResource'
+      },
+      false: {
+        redirect: 'resp4xxRageQuittingInternet'
+      }
+    }
+  },
+
+  resp4xxRageQuittingInternet: {
+    question: {
+      message: 'Are you rage-quitting the internet?',
+      type: 'confirm'
+    },
+    resolve: {
+      true: {
+        value: 410
+      },
+      false: {
+        value: 404
+      }
+    }
+  },
+
+  resp4xxHttpMethodHandledByResource: {
+    question: {
+      message: 'Is the HTTP method handled by the resource?',
+      type: 'confirm'
+    },
+    resolve: {
+      true: {
+        redirect: 'resp4xxHeaderProblems'
+      },
+      false: {
+        value: 405
+      }
+    }
+  },
+
+  resp4xxHeaderProblems: {
+    question: {
+      message: 'Problem with the headers?',
+      type: 'confirm'
+    },
+    resolve: {
+      true: {
+        redirect: 'resp4xxHeaderSwitch'
+      },
+      false: {
+        redirect: 'resp4xxRequestIncompatibleWithPrevious'
+      }
+    }
+  },
+
+  resp4xxHeaderSwitch: {
+    question: {
+      message: 'Please select the header in question:',
+      type: 'list',
+      choices: [
+        'Accept',
+        'Content-Length',
+        'Content-Type',
+        'Expect',
+        'If-*',
+        'Other'
+      ]
+    },
+    resolve: {
+      'Accept': {
+        value: 406
+      },
+      'Content-Length': {
+        value: 411
+      },
+      'Content-Type': {
+        value: 415
+      },
+      'Expect': {
+        value: 417
+      },
+      'If-*': {
+        value: 412
+      },
+      'Other': {
+        redirect: 'resp4xxRequestIncompatibleWithPrevious'
+      }
+    }
+  },
+
+  resp4xxRequestIncompatibleWithPrevious: {
+    question: {
+      message: 'Is the request incompatible with a previous request?',
+      type: 'confirm'
+    },
+    resolve: {
+      true: {
+        value: 409
+      },
+      false: {
+        redirect: 'resp4xxBodyWellFormedButInvalid'
+      }
+    }
+  },
+
+  resp4xxBodyWellFormedButInvalid: {
+    question: {
+      message: 'Is the body well-formed and yet still invalid?',
+      type: 'confirm'
+    },
+    resolve: {
+      true: {
+        value: 422
+      },
+      false: {
+        redirect: 'resp4xxApril1st'
+      }
+    }
+  },
+
+  resp4xxApril1st: {
+    question: {
+      message: 'Is it April 1st?',
+      type: 'confirm'
+    },
+    resolve: {
+      true: {
+        value: 418
+      },
+      false: {
+        redirect: 'resp4xxImplementingWebServer'
+      }
+    }
+  },
+
+  resp4xxImplementingWebServer: {
+    question: {
+      message: 'Are you implementing a web server?',
+      type: 'confirm'
+    },
+    resolve: {
+      true: {
+        value: [ 406, 413, 414, 416, 426 ]
+      },
+      false: {
+        value: 400
       }
     }
   },
