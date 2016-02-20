@@ -5,8 +5,8 @@
 
 var
   colors = require( 'colors' ),
-  questions = require( '../wtsc-questions' ),
-  availableStatusCodes = require( '../status-codes' );
+  questions = require( '../app/questions' ),
+  availableStatusCodes = require( '../app/status-codes' );
 
 colors.setTheme( {
   success: 'green',

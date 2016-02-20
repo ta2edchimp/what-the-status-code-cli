@@ -6,7 +6,7 @@ var
   Table = require( 'cli-table2' ),
 
   statusCodes = require( './status-codes' ),
-  questions = require( './wtsc-questions' ),
+  questions = require( './questions' ),
 
   traverser = require( 'inquiry-traverser' ),
   traverse = traverser( inquirer );
