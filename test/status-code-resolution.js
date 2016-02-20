@@ -71,7 +71,10 @@ function testStatusCodePresence( allQuestions, statusCodes ) {
 try {
   testObjectAvailability( 'Questions', questions );
   testObjectAvailability( 'available Status Codes', availableStatusCodes );
+
   testStatusCodePresence( questions, availableStatusCodes );
+
+  console.log( '\n' + 'All questions\' status codes responses get resolved.'.green + '\n' );
 } catch ( e ) {
   console.log( '\nERROR:'.error, e );
   process.exit( 1 );
