@@ -1,9 +1,22 @@
+var
+  defaultConfirmation = {
+    type: 'list',
+    choices: [ {
+      value: true,
+      name: 'Yes'
+    }, {
+      value: false,
+      name: 'No'
+    } ]
+  };
+
 module.exports = {
   entry: 'responseClassRequest',
   responseClassRequest: {
     question: {
       message: 'Is there a problem with the request?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -18,7 +31,8 @@ module.exports = {
   responseClassServerSide: {
     question: {
       message: 'Is there a problem server-side?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -34,7 +48,8 @@ module.exports = {
   resp2xx3xxRedirect: {
     question: {
       message: 'Do you want to redirect the user to a new Location?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -49,7 +64,14 @@ module.exports = {
   resp2xx3xxSameResourceNewLocation: {
     question: {
       message: 'Is it to the same resource at a new Location?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: [ {
+        value: true,
+        name: 'Yes'
+      }, {
+        value: false,
+        name: 'No, a different resource'
+      } ]
     },
     resolve: {
       true: {
@@ -64,7 +86,8 @@ module.exports = {
   resp2xx3xxCanMethodChangeToGet: {
     question: {
       message: 'Can the method change to GET?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -79,7 +102,8 @@ module.exports = {
   resp2xx3xxNewLocationTemporary: {
     question: {
       message: 'Is the new Location temporary?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -94,7 +118,8 @@ module.exports = {
   resp2xx3xxNewLocationTemporaryRedirect: {
     question: {
       message: 'Is the new Location temporary?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -109,7 +134,8 @@ module.exports = {
   resp2xx3xxLocationCreatedForRequest: {
     question: {
       message: 'Was the Location created for the request?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -124,7 +150,14 @@ module.exports = {
   resp2xx3xxRequestCompletesLater: {
     question: {
       message: 'Will the request be completed later?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: [ {
+        value: true,
+        name: 'Yes'
+      }, {
+        value: false,
+        name: 'No, it\'s done'
+      } ]
     },
     resolve: {
       true: {
@@ -142,7 +175,8 @@ module.exports = {
   resp2xx3xxUsersViewUnchanged: {
     question: {
       message: 'Do you want the user\'s view to remain unchanged?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -160,7 +194,8 @@ module.exports = {
   resp2xx3xxImplementingWebServer: {
     question: {
       message: 'Are you implementing a web server?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -176,7 +211,8 @@ module.exports = {
   resp4xxUserThrottled: {
     question: {
       message: 'Is the user being throttled?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -191,7 +227,8 @@ module.exports = {
   resp4xxTwitter: {
     question: {
       message: 'Are you Twitter?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -206,7 +243,8 @@ module.exports = {
   resp4xxNeedToAuthenticate: {
     question: {
       message: 'Does the user need to authenticate?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -221,7 +259,8 @@ module.exports = {
   resp4xxUsingHttpAuth: {
     question: {
       message: 'Are you using HTTP auth?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -236,7 +275,8 @@ module.exports = {
   resp4xxUserAccessToResource: {
     question: {
       message: 'Does the user have access to the resource?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -251,7 +291,8 @@ module.exports = {
   resp4xxIsResourceSecret: {
     question: {
       message: 'Is the resource a secret?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       false: {
@@ -266,7 +307,8 @@ module.exports = {
   resp4xxDoesResourceExist: {
     question: {
       message: 'Does the resource even exist?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -281,7 +323,8 @@ module.exports = {
   resp4xxRageQuittingInternet: {
     question: {
       message: 'Are you rage-quitting the internet?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -296,7 +339,8 @@ module.exports = {
   resp4xxHttpMethodHandledByResource: {
     question: {
       message: 'Is the HTTP method handled by the resource?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -311,7 +355,8 @@ module.exports = {
   resp4xxHeaderProblems: {
     question: {
       message: 'Problem with the headers?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -361,7 +406,8 @@ module.exports = {
   resp4xxRequestIncompatibleWithPrevious: {
     question: {
       message: 'Is the request incompatible with a previous request?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -376,7 +422,8 @@ module.exports = {
   resp4xxBodyWellFormedButInvalid: {
     question: {
       message: 'Is the body well-formed and yet still invalid?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -391,7 +438,8 @@ module.exports = {
   resp4xxApril1st: {
     question: {
       message: 'Is it April 1st?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -406,7 +454,8 @@ module.exports = {
   resp4xxImplementingWebServer: {
     question: {
       message: 'Are you implementing a web server?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -422,7 +471,8 @@ module.exports = {
   resp5xxShouldRetry: {
     question: {
       message: 'Should the user Retry-After some time?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -437,7 +487,8 @@ module.exports = {
   resp5xxProblemWithAnotherServer: {
     question: {
       message: 'Is it a problem with another server?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -452,7 +503,8 @@ module.exports = {
   resp5xxOtherServerResponding: {
     question: {
       message: 'Is the other server responding?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
@@ -467,7 +519,8 @@ module.exports = {
   resp5xxDoYouFeelBad: {
     question: {
       message: 'Do you feel bad your code can\'t handle the request?',
-      type: 'confirm'
+      type: defaultConfirmation.type,
+      choices: defaultConfirmation.choices
     },
     resolve: {
       true: {
