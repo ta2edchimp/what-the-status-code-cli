@@ -83,7 +83,7 @@ function getUsageInfo( args ) {
   usageInfo.push( padLeft + 'Example:' );
   usageInfo.push( padLeft + name + ' 200 404 504\n\n' );
 
-  usageInfo.push( 'Miscellaneous:\n' )
+  usageInfo.push( 'Miscellaneous:\n' );
   usageInfo.push( padLeft + '-h, --help     Show help' );
   usageInfo.push( padLeft + '-v, --version  Outputs the version number' );
   usageInfo.push( padLeft + '--no-color     Deactivates colorized output\n' );
