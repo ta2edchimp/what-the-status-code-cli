@@ -66,7 +66,7 @@ The link to [https://httpstatuses.com](https://httpstatuses.com/) are clickable 
 Explore other options via
 
 ```
-$ npm --help
+$ wtsc --help
 ```
 
 ## Acknowledgements
