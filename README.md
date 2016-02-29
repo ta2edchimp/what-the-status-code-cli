@@ -1,6 +1,6 @@
 # What The... Status Code
 
-[![npm version](https://badge.fury.io/js/what-the-status-code-cli.svg)](https://badge.fury.io/js/what-the-status-code-cli) [![dependencies](https://david-dm.org/ta2edchimp/what-the-status-code-cli.svg?theme=shields.io)](https://david-dm.org/ta2edchimp/what-the-status-code-cli)
+[![npm version](https://badge.fury.io/js/what-the-status-code-cli.svg)](https://badge.fury.io/js/what-the-status-code-cli) [![dependencies](https://david-dm.org/ta2edchimp/what-the-status-code-cli.svg)](https://david-dm.org/ta2edchimp/what-the-status-code-cli) [![dev dependencies](https://david-dm.org/ta2edchimp/what-the-status-code-cli/dev-status.svg)](https://david-dm.org/ta2edchimp/what-the-status-code-cli#info=devDependencies)
 
 A CLI Tool to help choosing the correct HTTP Status Code by answering some questions.
 
