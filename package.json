@@ -41,8 +41,9 @@
   },
   "devDependencies": {
     "cz-conventional-changelog": "^1.1.5",
-    "eslint": "^2.2.0",
+    "eslint": "^2.4.0",
     "eslint-config-idiomatic": "^2.0.0",
+    "eslint-config-ta2edchimp": "^1.1.0",
     "ghooks": "^1.2.0",
     "semantic-release": "^4.3.5",
     "validate-commit-msg": "^2.5.0"

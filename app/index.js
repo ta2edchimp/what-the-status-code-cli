@@ -1,9 +1,10 @@
 #!/usr/bin/env node
+'use strict';
 
 var
   inquirer = require( 'inquirer' ),
   colors = require( 'colors' ),
-  Table = require( 'cli-table2' ),
+  Table = require( 'cli-table2' ), // eslint-disable-line id-match
 
   statusCodes = require( './status-codes' ),
   questions = require( './questions' ),
