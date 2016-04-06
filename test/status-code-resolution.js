@@ -1,3 +1,4 @@
+/* eslint max-statements: 0 */
 /*
  * Test, whether each HTTP Status Code within the branched Questions object
  * has a representation within the available Status Codes object.
