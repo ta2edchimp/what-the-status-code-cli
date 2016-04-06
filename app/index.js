@@ -107,8 +107,6 @@ function getStatusCodesTable( codes ) {
     len = allCodes.length,
     code = 0,
     codeInfo = {},
-    message = '',
-    meaning = '',
     resultsTable = new Table( {
       head: [
         'Code'.tableHead,
@@ -120,45 +118,59 @@ function getStatusCodesTable( codes ) {
     } );
 
   for ( ; idx < len; idx++ ) {
-    code = allCodes[ idx ];
-
-    if ( isNaN( code ) ) {
+    if ( !( code = allCodes[ idx ] ) || isNaN( code ) ) {
       throw Error( 'HTTP Status Codes to lookup must be numbers! "' + code + '" is not a number.' );
     }
 
-    codeInfo = statusCodes[ code ];
+    codeInfo = obtainStatusCodeInfo( code );
 
-    if ( codeInfo ) {
-      message = codeInfo.message;
-      meaning = codeInfo.meaning;
-
-      if ( codeInfo.link === true ) {
-        meaning += '\n' + ( 'https://httpstatuses.com/' + code ).link;
-      }
-
-      if ( typeof codeInfo.customLink === 'string' ) {
-        meaning += '\n' + codeInfo.customLink.link;
-      }
-
-      if ( codeInfo.unofficial === true ) {
-        meaning = 'Unofficial code'.emphasize + '\n' + meaning;
-      }
-    } else {
+    if ( !codeInfo ) {
       code = ( '' + code ).error;
-      message = '-'.error;
-      meaning = 'This code is unknown or not an HTTP Status Code.'.error;
+      codeInfo = {
+        message: '-'.error,
+        meaning: 'This code is unknown or not an HTTP Status Code.'.error
+      };
     }
 
     resultsTable.push( [
       code,
-      message,
-      meaning
+      codeInfo.message,
+      codeInfo.meaning
     ] );
   }
 
   return resultsTable;
 }
 
+
+/**
+ * Obtains the info object corresponding to the given HTTP Status Code.
+ *
+ * @param  {number} code The HTTP Status Code to lookup
+ * @return {Object}      The Status Code's info object
+ */
+function obtainStatusCodeInfo( code ) {
+  var
+    codeInfo = statusCodes[ code ];
+
+  if ( codeInfo ) {
+    codeInfo = Object.assign( {}, codeInfo );
+
+    if ( codeInfo.link === true ) {
+      codeInfo.meaning += '\n' + ( 'https://httpstatuses.com/' + code ).link;
+    }
+
+    if ( typeof codeInfo.customLink === 'string' ) {
+      codeInfo.meaning += '\n' + codeInfo.customLink.link;
+    }
+
+    if ( codeInfo.unofficial === true ) {
+      codeInfo.meaning = 'Unofficial code'.emphasize + '\n' + codeInfo.meaning;
+    }
+  }
+
+  return codeInfo;
+}
 
 /**
  * Looks up a given list of numeric values for their corresponding meaning as
