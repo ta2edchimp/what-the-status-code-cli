@@ -1,0 +1,18 @@
+{
+  "extends": "../.eslintrc.json",
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "id-length": [ 2, { "exceptions": [ "t" ] } ],
+    "quotes": ["error", "backtick", "avoid-escape"]
+  }
+}
