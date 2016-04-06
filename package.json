@@ -1,6 +1,5 @@
 {
   "name": "what-the-status-code-cli",
-  "version": "1.1.2",
   "description": "A CLI Tool to help choosing the correct HTTP Status Code by answering some questions.",
   "main": "app/index.js",
   "files": [
@@ -11,14 +10,15 @@
   "scripts": {
     "test": "npm run test:lint && npm run test:statuscodes",
     "test:lint": "eslint app/ test/",
-    "test:statuscodes": "node test/status-code-resolution"
+    "test:statuscodes": "node test/status-code-resolution",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "bin": {
     "wtsc": "app/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ta2edchimp/what-the-status-code-cli.git"
+    "url": "https://github.com/ta2edchimp/what-the-status-code-cli.git"
   },
   "keywords": [
     "http",
@@ -40,7 +40,20 @@
     "inquiry-traverser": "^0.2.0"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "^1.1.5",
     "eslint": "^2.2.0",
-    "eslint-config-idiomatic": "^2.0.0"
+    "eslint-config-idiomatic": "^2.0.0",
+    "ghooks": "^1.2.0",
+    "semantic-release": "^4.3.5",
+    "validate-commit-msg": "^2.5.0"
+  },
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg",
+      "pre-commit": "npm run test"
+    },
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
