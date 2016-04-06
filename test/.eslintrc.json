@@ -13,6 +13,6 @@
   },
   "rules": {
     "id-length": [ 2, { "exceptions": [ "t" ] } ],
-    "quotes": ["error", "backtick", "avoid-escape"]
+    "quotes": [ "error", "backtick", "avoid-escape" ]
   }
 }

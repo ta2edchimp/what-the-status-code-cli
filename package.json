@@ -51,8 +51,10 @@
     "eslint-config-idiomatic": "^2.0.0",
     "eslint-config-ta2edchimp": "^1.1.0",
     "ghooks": "^1.2.0",
+    "lodash.clone": "^4.3.2",
     "npm-run-all": "^1.7.0",
     "nyc": "^6.1.1",
+    "proxyquire": "^1.7.4",
     "semantic-release": "^4.3.5",
     "validate-commit-msg": "^2.5.0"
   },
