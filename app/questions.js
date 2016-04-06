@@ -1,3 +1,5 @@
+'use strict';
+
 var
   defaultConfirmation = {
     type: 'list',
@@ -382,7 +384,7 @@ module.exports = {
       ]
     },
     resolve: {
-      'Accept': {
+      'Accept': { // eslint-disable-line quote-props
         value: 406
       },
       'Content-Length': {
@@ -391,13 +393,13 @@ module.exports = {
       'Content-Type': {
         value: 415
       },
-      'Expect': {
+      'Expect': { // eslint-disable-line quote-props
         value: 417
       },
       'If-*': {
         value: 412
       },
-      'Other': {
+      'Other': { // eslint-disable-line quote-props
         redirect: 'resp4xxRequestIncompatibleWithPrevious'
       }
     }

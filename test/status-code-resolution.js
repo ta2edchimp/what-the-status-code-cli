@@ -2,6 +2,7 @@
  * Test, whether each HTTP Status Code within the branched Questions object
  * has a representation within the available Status Codes object.
  */
+'use strict';
 
 var
   colors = require( 'colors' ),
@@ -19,10 +20,9 @@ colors.setTheme( {
  *
  * @param  {string} name   The object's name (for output)
  * @param  {Object} object The objects
- * @return {boolean}
+ * @return {boolean}       Whether the given object exists
  */
 function testObjectAvailability( name, object ) {
-
   console.log( '\tTesting object "' + name + '" for availability ...' );
 
   if ( typeof object !== 'object' ) {
@@ -45,10 +45,10 @@ function testObjectAvailability( name, object ) {
  */
 function testStatusCodePresence( allQuestions, statusCodes ) {
   var
-    questionName,
-    question,
-    resolutionName,
-    resolution,
+    questionName = '',
+    question = null,
+    resolutionName = '',
+    resolution = null,
     allPresent = true;
 
   for ( questionName in allQuestions ) {
@@ -94,23 +94,24 @@ function testStatusCodePresence( allQuestions, statusCodes ) {
  * @param  {string}  propName           The name of the property to test
  * @param  {string}  propType           The desired type
  * @param  {boolean} existenceMandatory Whether to insist on the property's existence
- * @return {boolean}
+ * @return {boolean}                    Whether the given property exists and matches type
  */
-function testProperty( code, object, propName, propType, existenceMandatory ) {
+function testProperty( code, object, propName, propType, existenceMandatory ) { // eslint-disable-line max-params
   if ( !object[ propName ] ) {
     if ( existenceMandatory !== false ) {
       console.log( '\t' + '✘'.error + ' Status Code ' + code + ' lacks a "' + propName + '" ' + propType + ' property!' );
+
       return false;
-    } else {
-      return true;
     }
+
+    return true;
   }
 
   if ( typeof object[ propName ] !== propType ) {
     console.log( '\t' + '✘'.error + ' Status Code ' + code + ' has property "' + propName + '" of wrong type! Must be of type ' + propType + '!' );
+
     return false;
   }
-
 
   return true;
 }
@@ -124,9 +125,9 @@ function testProperty( code, object, propName, propType, existenceMandatory ) {
  */
 function testStatusCodeDetails( statusCodes ) {
   var
-    code,
-    codeInfo,
-    plausibilityTests,
+    code = '',
+    codeInfo = null,
+    plausibilityTests = null,
     plausible = true;
 
   for ( code in statusCodes ) {
@@ -167,7 +168,7 @@ try {
 
   testStatusCodeDetails( availableStatusCodes );
   console.log( '\n' + 'All status codes details seem plausible.'.green + '\n' );
-} catch ( e ) {
+} catch ( e ) { // eslint-disable-line id-length, id-blacklist
   console.log( '\nERROR:'.error, e );
-  process.exit( 1 );
+  process.exit( 1 ); // eslint-disable-line no-process-exit
 }

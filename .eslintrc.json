@@ -5,7 +5,9 @@
     "node": true
   },
   "rules": {
+    "id-match": [ 0 ],
     "max-len": [ 0 ],
+    "no-console": [ 0 ],
     "no-magic-numbers": [ 0 ]
   }
 }
