@@ -1,9 +1,8 @@
 # What The... Status Code
 
-[![npm version](https://badge.fury.io/js/what-the-status-code-cli.svg)](https://badge.fury.io/js/what-the-status-code-cli) [![downloads](https://img.shields.io/npm/dm/what-the-status-code-cli.svg)](http://npm-stat.com/charts.html?package=what-the-status-code-cli&from=2016-02-15) [![dependencies](https://david-dm.org/ta2edchimp/what-the-status-code-cli.svg)](https://david-dm.org/ta2edchimp/what-the-status-code-cli)
+[![npm version](https://badge.fury.io/js/what-the-status-code-cli.svg)](https://badge.fury.io/js/what-the-status-code-cli) [![Build Status](https://img.shields.io/travis/ta2edchimp/what-the-status-code-cli/master.svg)](https://travis-ci.org/ta2edchimp/what-the-status-code-cli) [![Code Coverage](https://img.shields.io/codecov/c/github/ta2edchimp/what-the-status-code-cli.svg)](https://codecov.io/github/ta2edchimp/what-the-status-code-cli) [![dependencies](https://david-dm.org/ta2edchimp/what-the-status-code-cli.svg)](https://david-dm.org/ta2edchimp/what-the-status-code-cli)
 
-[![MIT License](https://img.shields.io/npm/l/what-the-status-code-cli.svg)](http://opensource.org/licenses/MIT)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![MIT License](https://img.shields.io/npm/l/what-the-status-code-cli.svg)](http://opensource.org/licenses/MIT) [![downloads](https://img.shields.io/npm/dm/what-the-status-code-cli.svg)](http://npm-stat.com/charts.html?package=what-the-status-code-cli&from=2016-02-15) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 
 A CLI Tool to help choosing the correct HTTP Status Code by answering some questions.
