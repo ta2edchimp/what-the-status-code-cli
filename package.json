@@ -8,9 +8,13 @@
     "app"
   ],
   "scripts": {
-    "test": "npm run test:lint && npm run test:statuscodes",
+    "validate": "npm-run-all --parallel test:lint test:cover --sequential check-coverage",
+    "test": "npm run test:lint && npm run test:unit",
+    "test:cover": "nyc --all --reporter=lcov --reporter=text ava",
     "test:lint": "eslint app/ test/",
-    "test:statuscodes": "node test/status-code-resolution",
+    "test:unit": "ava --verbose",
+    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "report-coverage": "cat ./coverage/lcov.info | node_modules/.bin/codecov",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "bin": {
@@ -37,13 +41,21 @@
     "cli-table2": "^0.2.0",
     "colors": "^1.1.2",
     "inquirer": "^0.12.0",
-    "inquiry-traverser": "^0.2.0"
+    "inquiry-traverser": "^0.2.0",
+    "object-assign": "^4.0.1"
   },
   "devDependencies": {
+    "ava": "^0.14.0",
+    "codecov": "^1.0.1",
     "cz-conventional-changelog": "^1.1.5",
-    "eslint": "^2.2.0",
+    "eslint": "^2.4.0",
     "eslint-config-idiomatic": "^2.0.0",
+    "eslint-config-ta2edchimp": "^1.1.0",
     "ghooks": "^1.2.0",
+    "lodash.clone": "^4.3.2",
+    "npm-run-all": "^1.7.0",
+    "nyc": "^6.2.1",
+    "proxyquire": "^1.7.4",
     "semantic-release": "^4.3.5",
     "validate-commit-msg": "^2.5.0"
   },
@@ -55,5 +67,10 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "nyc": {
+    "include": [
+      "app/*"
+    ]
   }
 }

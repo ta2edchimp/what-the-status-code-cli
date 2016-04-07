@@ -1,11 +1,13 @@
 {
   "root": true,
-  "extends": "idiomatic",
+  "extends": "ta2edchimp",
   "env": {
     "node": true
   },
   "rules": {
-    "semi": [ 2, "always" ],
-    "dot-notation": [ 2, { "allowKeywords": true, "allowPattern": "" } ]
+    "id-match": [ 0 ],
+    "max-len": [ 0 ],
+    "no-console": [ 0 ],
+    "no-magic-numbers": [ 0 ]
   }
 }

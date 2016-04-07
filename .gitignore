@@ -13,3 +13,7 @@ node_modules
 
 # Optional npm cache directory
 .npm
+
+# Code coverage
+.nyc_output
+coverage

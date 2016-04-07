@@ -1,9 +1,11 @@
 #!/usr/bin/env node
+'use strict';
 
 var
   inquirer = require( 'inquirer' ),
   colors = require( 'colors' ),
-  Table = require( 'cli-table2' ),
+  Table = require( 'cli-table2' ), // eslint-disable-line id-match
+  assign = require( 'object-assign' ),
 
   statusCodes = require( './status-codes' ),
   questions = require( './questions' ),
@@ -20,37 +22,29 @@ colors.setTheme( {
 
 
 if ( process.argv.indexOf( '-v' ) > 0 || process.argv.indexOf( '--version' ) > 0 ) {
-
   console.info(
     getVersion()
   );
-
 } else if ( process.argv.indexOf( '-h' ) > 0 || process.argv.indexOf( '--help' ) > 0 ) {
-
   console.info(
     getUsageInfo( process.argv )
   );
-
 } else if ( process.argv.length > 2 ) {
-
   console.info(
     lookUpHttpStatusCode( process.argv.splice( 2 ) )
   );
-
 } else {
-
   chooseHttpStatusCode();
-
 }
 
 
 /**
  * Returns the current version number.
  *
- * @return {string}
+ * @return {string} version string from package.json
  */
 function getVersion() {
-  return require( '../package.json' ).version;
+  return require( '../package.json' ).version; // eslint-disable-line global-require
 }
 
 
@@ -58,7 +52,7 @@ function getVersion() {
  * Prints out "What The... Status Code" usage info.
  *
  * @param  {Array} args Arguments the Script has been called with
- * @return {string}
+ * @return {string}     Usage information string
  */
 function getUsageInfo( args ) {
   var
@@ -70,23 +64,25 @@ function getUsageInfo( args ) {
 
     usageInfo = [];
 
-  usageInfo.push( name + ' v' + version + '\n' );
+  usageInfo.push(
+    name + ' v' + version + '\n' +
 
-  usageInfo.push( 'Without arguments:\n' );
-  usageInfo.push( padLeft + 'Invoking ' + name + ' without any arguments will ask' );
-  usageInfo.push( padLeft + 'a few questions prior to suggesting an HTTP Status Code' );
-  usageInfo.push( padLeft + 'to meet your situation.\n\n' );
+    'Without arguments:\n' +
+    padLeft + 'Invoking ' + name + ' without any arguments will ask' +
+    padLeft + 'a few questions prior to suggesting an HTTP Status Code' +
+    padLeft + 'to meet your situation.\n\n' +
 
-  usageInfo.push( 'Looking up Status Codes:\n' );
-  usageInfo.push( padLeft + 'Invoke ' + name + ' with any number of HTTP Status Codes' );
-  usageInfo.push( padLeft + 'to look up their message and meaning.\n' );
-  usageInfo.push( padLeft + 'Example:' );
-  usageInfo.push( padLeft + name + ' 200 404 504\n\n' );
+    'Looking up Status Codes:\n' +
+    padLeft + 'Invoke ' + name + ' with any number of HTTP Status Codes' +
+    padLeft + 'to look up their message and meaning.\n' +
+    padLeft + 'Example:' +
+    padLeft + name + ' 200 404 504\n\n' +
 
-  usageInfo.push( 'Miscellaneous:\n' );
-  usageInfo.push( padLeft + '-h, --help     Show help' );
-  usageInfo.push( padLeft + '-v, --version  Outputs the version number' );
-  usageInfo.push( padLeft + '--no-color     Deactivates colorized output\n' );
+    'Miscellaneous:\n' +
+    padLeft + '-h, --help     Show help' +
+    padLeft + '-v, --version  Outputs the version number' +
+    padLeft + '--no-color     Deactivates colorized output\n'
+  );
 
   return usageInfo.join( '\n' );
 }
@@ -103,17 +99,15 @@ function getUsageInfo( args ) {
  * console.log( table.toString() );
  *
  * @param  {number|Array} codes A single number or an Array of numbers
- * @return {Table}
+ * @return {Table}              HTTP Status Code(s) and their message and meaning
  */
 function getStatusCodesTable( codes ) {
   var
-    _codes = [].concat( codes ),
+    allCodes = [].concat( codes ),
     idx = 0,
-    len = _codes.length,
+    len = allCodes.length,
     code = 0,
     codeInfo = {},
-    message = '',
-    meaning = '',
     resultsTable = new Table( {
       head: [
         'Code'.tableHead,
@@ -125,43 +119,24 @@ function getStatusCodesTable( codes ) {
     } );
 
   for ( ; idx < len; idx++ ) {
-    code = _codes[ idx ];
-
-    if ( isNaN( code ) ) {
+    if ( !( code = allCodes[ idx ] ) || isNaN( code ) ) {
       throw Error( 'HTTP Status Codes to lookup must be numbers! "' + code + '" is not a number.' );
     }
 
-    codeInfo = statusCodes[ code ];
+    codeInfo = obtainStatusCodeInfo( code );
 
-    if ( codeInfo ) {
-
-      message = codeInfo.message;
-      meaning = codeInfo.meaning;
-
-      if ( codeInfo.link === true ) {
-        meaning += '\n' + ( 'https://httpstatuses.com/' + code ).link;
-      }
-
-      if ( typeof codeInfo.customLink === 'string' ) {
-        meaning += '\n' + codeInfo.customLink.link;
-      }
-
-      if ( codeInfo.unofficial === true ) {
-        meaning = 'Unofficial code'.emphasize + '\n' + meaning;
-      }
-
-    } else {
-
+    if ( !codeInfo ) {
       code = ( '' + code ).error;
-      message = '-'.error;
-      meaning = 'This code is unknown or not an HTTP Status Code.'.error;
-
+      codeInfo = {
+        message: '-'.error,
+        meaning: 'This code is unknown or not an HTTP Status Code.'.error
+      };
     }
 
     resultsTable.push( [
       code,
-      message,
-      meaning
+      codeInfo.message,
+      codeInfo.meaning
     ] );
   }
 
@@ -170,16 +145,45 @@ function getStatusCodesTable( codes ) {
 
 
 /**
+ * Obtains the info object corresponding to the given HTTP Status Code.
+ *
+ * @param  {number} code The HTTP Status Code to lookup
+ * @return {Object}      The Status Code's info object
+ */
+function obtainStatusCodeInfo( code ) {
+  var
+    codeInfo = statusCodes[ code ];
+
+  if ( codeInfo ) {
+    codeInfo = assign( {}, codeInfo );
+
+    if ( codeInfo.link === true ) {
+      codeInfo.meaning += '\n' + ( 'https://httpstatuses.com/' + code ).link;
+    }
+
+    if ( typeof codeInfo.customLink === 'string' ) {
+      codeInfo.meaning += '\n' + codeInfo.customLink.link;
+    }
+
+    if ( codeInfo.unofficial === true ) {
+      codeInfo.meaning = 'Unofficial code'.emphasize + '\n' + codeInfo.meaning;
+    }
+  }
+
+  return codeInfo;
+}
+
+/**
  * Looks up a given list of numeric values for their corresponding meaning as
  * HTTP Status Codes.
  *
  * @param  {Array} lookup Array of numbers to look up
- * @return {string}
+ * @return {string}       HTTP Status Codes and their message and meaning as a string
  */
 function lookUpHttpStatusCode( lookup ) {
   var
-    codes = lookup.filter( function filterNaNs( n ) {
-      return !isNaN( n );
+    codes = lookup.filter( function filterNaNs( code ) {
+      return !isNaN( code );
     } );
 
   return getStatusCodesTable( codes ).toString();
@@ -196,7 +200,7 @@ function chooseHttpStatusCode() {
   traverse( questions )
     .then( function onResolved( value ) {
       var
-        outputTable;
+        outputTable; // eslint-disable-line init-declarations
 
       if ( !value ) {
         throw Error( 'Could not resolve HTTP Status Code!' );
@@ -204,6 +208,7 @@ function chooseHttpStatusCode() {
 
       outputTable = getStatusCodesTable( value );
 
+      /* istanbul ignore if */
       if ( !( outputTable instanceof Table ) ) {
         throw Error( 'Could not transform HTTP Status Code(s) ' + value + ' into a table to output!' );
       }
