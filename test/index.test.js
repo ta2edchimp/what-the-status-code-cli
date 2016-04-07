@@ -35,7 +35,8 @@ test( `print version info`, ( t ) => {
 test( `print usage info`, ( t ) => {
   t.plan( 1 );
 
-  process.argv.push( `-h` );
+  process.argv = process.argv.slice( 0, 1 );
+  process.argv.push( ``, `-h` );
   console.info = ( arg ) => {
     t.regex( arg, /Looking up Status Codes/, `expect version string printed` );
   };
