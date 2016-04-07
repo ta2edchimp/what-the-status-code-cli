@@ -207,6 +207,7 @@ function chooseHttpStatusCode() {
 
       outputTable = getStatusCodesTable( value );
 
+      /* istanbul ignore if */
       if ( !( outputTable instanceof Table ) ) {
         throw Error( 'Could not transform HTTP Status Code(s) ' + value + ' into a table to output!' );
       }
