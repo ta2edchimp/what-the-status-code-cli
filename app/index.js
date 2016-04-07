@@ -5,6 +5,7 @@ var
   inquirer = require( 'inquirer' ),
   colors = require( 'colors' ),
   Table = require( 'cli-table2' ), // eslint-disable-line id-match
+  assign = require( 'object-assign' ),
 
   statusCodes = require( './status-codes' ),
   questions = require( './questions' ),
@@ -154,7 +155,7 @@ function obtainStatusCodeInfo( code ) {
     codeInfo = statusCodes[ code ];
 
   if ( codeInfo ) {
-    codeInfo = Object.assign( {}, codeInfo );
+    codeInfo = assign( {}, codeInfo );
 
     if ( codeInfo.link === true ) {
       codeInfo.meaning += '\n' + ( 'https://httpstatuses.com/' + code ).link;

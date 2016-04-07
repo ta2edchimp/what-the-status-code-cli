@@ -41,7 +41,8 @@
     "cli-table2": "^0.2.0",
     "colors": "^1.1.2",
     "inquirer": "^0.12.0",
-    "inquiry-traverser": "^0.2.0"
+    "inquiry-traverser": "^0.2.0",
+    "object-assign": "^4.0.1"
   },
   "devDependencies": {
     "ava": "^0.14.0",
