@@ -42,7 +42,7 @@
     "colors": "^1.1.2",
     "inquirer": "^1.0.3",
     "inquiry-traverser": "^0.3.0",
-    "object-assign": "^4.0.1"
+    "object-assign": "^4.1.1"
   },
   "devDependencies": {
     "ava": "^0.16.0",
