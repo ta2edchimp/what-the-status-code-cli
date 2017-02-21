@@ -47,7 +47,7 @@
   "devDependencies": {
     "ava": "^0.16.0",
     "codecov": "^1.0.1",
-    "cz-conventional-changelog": "^1.1.5",
+    "cz-conventional-changelog": "^2.0.0",
     "eslint": "^2.4.0",
     "eslint-config-idiomatic": "^2.0.0",
     "eslint-config-ta2edchimp": "^1.1.0",
