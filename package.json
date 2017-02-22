@@ -40,7 +40,7 @@
   "dependencies": {
     "cli-table2": "^0.2.0",
     "colors": "^1.1.2",
-    "inquirer": "^1.0.3",
+    "inquirer": "^3.0.2",
     "inquiry-traverser": "^0.3.0",
     "object-assign": "^4.0.1"
   },
