@@ -54,7 +54,7 @@
     "ghooks": "^1.2.0",
     "lodash.clone": "^4.3.2",
     "npm-run-all": "^3.1.0",
-    "nyc": "^8.1.0",
+    "nyc": "^10.3.0",
     "proxyquire": "^1.7.4",
     "semantic-release": "^4.3.5",
     "validate-commit-msg": "^2.5.0"
