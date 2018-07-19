@@ -4,7 +4,7 @@
 var
   inquirer = require( 'inquirer' ),
   colors = require( 'colors' ),
-  Table = require( 'cli-table2' ), // eslint-disable-line id-match
+  Table = require( 'cli-table3' ), // eslint-disable-line id-match
   assign = require( 'object-assign' ),
 
   statusCodes = require( './status-codes' ),
@@ -91,7 +91,7 @@ function getUsageInfo( args ) {
 /**
  * Receives a single numeric HTTP Status Code or an Array of those, determines
  * its/their message and meaning and transforms these results into a
- * `cli-table2` Table object.
+ * `cli-table3` Table object.
  *
  * @example
  * var
