@@ -15,7 +15,9 @@
     "test:unit": "ava --verbose",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "report-coverage": "cat ./coverage/lcov.info | node_modules/.bin/codecov",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "bin": {
     "wtsc": "app/index.js"
@@ -42,7 +44,8 @@
     "colors": "^1.1.2",
     "inquirer": "^1.0.3",
     "inquiry-traverser": "^0.3.0",
-    "object-assign": "^4.0.1"
+    "object-assign": "^4.0.1",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "ava": "^0.16.0",
@@ -72,5 +75,6 @@
     "include": [
       "app/*"
     ]
-  }
+  },
+  "snyk": true
 }
